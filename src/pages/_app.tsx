@@ -4,18 +4,24 @@ import { api } from "~/utils/api";
 
 import "~/styles/globals.css";
 
-import { Noto_Serif } from 'next/font/google'
+import { Open_Sans } from 'next/font/google'
+import { ClerkProvider } from "@clerk/nextjs";
+import { dark } from '@clerk/themes';
 
 //👇 Configure our font object
-const notoSerif = Noto_Serif({
+const openSans = Open_Sans({
   subsets: ['latin'],
 })
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (
-    <main className={notoSerif.className}>
-      <Component {...pageProps} />;
-    </main>
+    <ClerkProvider appearance={{
+      baseTheme: dark
+    }}>
+      <main className={openSans.className}>
+        <Component {...pageProps} />
+      </main>
+    </ClerkProvider>
   );
 };
 
